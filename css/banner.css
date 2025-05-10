@@ -1,0 +1,155 @@
+/* css/banner.css - Estilos para el banner principal */
+
+.banner-principal {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #4285F4 100%);
+    color: white;
+    padding: var(--space-xl) 0;
+    margin-bottom: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-principal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/pattern-school.png');
+    background-size: 300px;
+    opacity: 0.1;
+    animation: moveBackground 30s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 300px 300px;
+    }
+}
+
+.banner-principal .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.banner-principal h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-md);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.banner-principal p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-lg);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.banner-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.banner-buttons .btn {
+    min-width: 180px;
+    box-shadow: var(--shadow-md);
+}
+
+/* Para dispositivos medianos y pequeños */
+@media (max-width: 768px) {
+    .banner-principal {
+        padding: var(--space-lg) 0;
+    }
+    
+    .banner-principal h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .banner-principal p {
+        font-size: var(--font-size-md);
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-principal {
+        padding: var(--space-md) 0;
+    }
+    
+    .banner-buttons .btn {
+        width: 100%;
+    }
+}
+
+/* Categorías destacadas */
+.categorias-destacadas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+}
+
+.categoria-card {
+    background-color: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-lg);
+    transition: all var(--transition-normal);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-dark);
+    text-decoration: none;
+}
+
+.categoria-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.categoria-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: var(--space-md);
+    border: 3px solid var(--color-secondary);
+}
+
+.categoria-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+}
+
+.categoria-card:hover .categoria-icon img {
+    transform: scale(1.1);
+}
+
+.categoria-card h4 {
+    margin: var(--space-xs) 0;
+    font-size: var(--font-size-lg);
+    color: var(--color-primary);
+}
+
+.btn-text {
+    margin-top: var(--space-sm);
+    font-weight: 500;
+    color: var(--color-secondary);
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+}
+
+.categoria-card:hover .btn-text {
+    color: var(--color-primary);
+}

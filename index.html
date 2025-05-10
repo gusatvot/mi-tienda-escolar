@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tienda Escolar - Inicio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto :wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="images/logo.png" alt="Logo" width="50">
+        <h1>Tienda Escolar S.A.</h1>
+      </div>
+
+      <!-- Menú de navegación -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Barra de usuario y carrito -->
+      <div class="usuario-carrito">
+        <?php if (isset($_SESSION['usuario'])) { ?>
+          <p><?php echo $_SESSION['usuario']['email']; ?></p>
+          <a href="logout.php">Cerrar Sesión</a>
+        <?php } else { ?>
+          <a href="registro.html">Crear Cuenta</a> -
+          <a href="login.html">Iniciar Sesión</a>
+        <?php } ?>
+        <div class="carrito">
+          <a href="carrito.html">
+            <img src="images/carrito-icon.png" alt="Carrito" width="30">
+            <span id="contador-carrito">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Encabezado -->
+  </header>
+
+  <!-- Banner Principal -->
+  <section class="banner-principal">
+    <div class="container">
+      <h2>¡Todo para el regreso a clases!</h2>
+      <p>Encuentra los mejores productos escolares a precios increíbles, tanto para minoristas como mayoristas.</p>
+      <div class="banner-buttons">
+        <a href="tienda.html" class="btn lg">Ver productos</a>
+        <a href="registro.html" class="btn lg secondary">Registrarse como mayorista</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido principal -->
+  <main class="container">
+    <section class="contenido-pagina">
+      <h2>Bienvenido a Tu Tienda de Artículos Escolares</h2>
+      <p>Compra al por mayor o al detalle. Precios especiales para escuelas, comercios y particulares.</p>
+
+      <div class="acciones-principales">
+        <a href="tienda.html" class="btn">Ver Productos</a>
+        <a href="registro.html" class="btn secondary">Regístrate como Mayorista</a>
+      </div>
+
+      <h3>Categorías Destacadas</h3>
+<div class="categorias-destacadas">
+  <a href="tienda.html?categoria=Cuadernos" class="categoria-card">
+    <div class="categoria-icon">
+      <img src="images/productos/cuaderno.jpg" alt="Cuadernos">
+    </div>
+    <h4>Cuadernos</h4>
+    <span class="btn-text">Ver productos</span>
+  </a>
+  
+  <a href="tienda.html?categoria=Lapices" class="categoria-card">
+    <div class="categoria-icon">
+      <img src="images/productos/lapices.jpg" alt="Lápices">
+    </div>
+    <h4>Lápices</h4>
+    <span class="btn-text">Ver productos</span>
+  </a>
+  
+  <a href="tienda.html?categoria=Mochilas" class="categoria-card">
+    <div class="categoria-icon">
+      <img src="images/productos/mochila.jpg" alt="Mochilas">
+    </div>
+    <h4>Mochilas</h4>
+    <span class="btn-text">Ver productos</span>
+  </a>
+</div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2025 Tienda Escolar S.A. | Hecho con ayuda de un gran mentor 💡</p>
+  </footer>
+
+  <!-- Script para actualizar carrito -->
+  <script>
+    function actualizarContadorCarrito() {
+      fetch('php/carrito-actualizar.php')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('contador-carrito').textContent = data.cantidad;
+        })
+        .catch(error => {
+          console.error('Error al cargar el carrito:', error);
+        });
+    }
+
+    setInterval(actualizarContadorCarrito, 3000); // Cada 3 segundos
+    document.addEventListener("DOMContentLoaded", () => {
+      actualizarContadorCarrito();
+    });
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

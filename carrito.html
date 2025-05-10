@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Tienda Escolar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo de la Tienda" width="50">
+                <h1>Tienda Escolar S.A.</h1>
+            </div>
+
+            <!-- Menú de navegación -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="tienda.html">Tienda</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <!-- Barra de usuario y carrito -->
+            <div class="usuario-carrito">
+                <a href="registro.html">Crear Cuenta</a> -
+                <a href="login.html">Iniciar Sesión</a>
+                <div class="carrito">
+                    <a href="carrito.html">
+                        <img src="images/carrito-icon.png" alt="Carrito" width="30">
+                        <span id="contador-carrito">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <section class="contenido-pagina">
+            <h2>Tu Carrito de Compras</h2>
+            
+            <!-- Si el carrito está vacío, mostrar mensaje -->
+            <div id="carrito-vacio" class="carrito-vacio" style="display: none;">
+                <div class="carrito-vacio-imagen">
+                    <img src="images/carrito-vacio.png" alt="Carrito vacío" width="120">
+                </div>
+                <h3>Tu carrito está vacío</h3>
+                <p>Parece que aún no has añadido ningún producto a tu carrito.</p>
+                <a href="tienda.html" class="btn">Explorar productos</a>
+            </div>
+            
+            <!-- Si el carrito tiene productos, mostrar contenido -->
+            <div id="carrito-contenido" class="carrito-contenedor">
+                <!-- Lista de productos en el carrito -->
+                <div class="carrito-productos">
+                    <div class="carrito-header">
+                        <h3>Productos</h3>
+                        <p>3 productos en tu carrito</p>
+                    </div>
+                    
+                    <table class="tabla-carrito">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Producto 1 -->
+                            <tr data-id="1">
+                                <td>
+                                    <div class="producto-carrito">
+                                        <div class="producto-carrito-imagen">
+                                            <img src="images/productos/cuaderno.jpg" alt="Cuaderno Premium">
+                                        </div>
+                                        <div class="producto-carrito-info">
+                                            <h4>Cuaderno Premium</h4>
+                                            <p>SchoolPro</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="producto-precio">
+                                        $350
+                                        <span class="precio-unitario">Unitario</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-cantidad">
+                                        <div class="btn-cantidad" onclick="actualizarCantidad(1, 'restar')">-</div>
+                                        <input type="number" value="2" min="1" class="cantidad-input" onchange="actualizarCantidad(1, 'input')" data-precio="350">
+                                        <div class="btn-cantidad" onclick="actualizarCantidad(1, 'sumar')">+</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="producto-precio subtotal">$700</div>
+                                </td>
+                                <td>
+                                    <div class="producto-acciones">
+                                        <button class="btn-eliminar" onclick="eliminarProducto(1)">
+                                            <span>&times;</span> Eliminar
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Producto 2 -->
+                            <tr data-id="2">
+                                <td>
+                                    <div class="producto-carrito">
+                                        <div class="producto-carrito-imagen">
+                                            <img src="images/productos/lapices.jpg" alt="Lápices de Colores">
+                                        </div>
+                                        <div class="producto-carrito-info">
+                                            <h4>Lápices de Colores - 24 unidades</h4>
+                                            <p>ArtColor</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="producto-precio">
+                                        $450
+                                        <span class="precio-unitario">Unitario</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-cantidad">
+                                        <div class="btn-cantidad" onclick="actualizarCantidad(2, 'restar')">-</div>
+                                        <input type="number" value="1" min="1" class="cantidad-input" onchange="actualizarCantidad(2, 'input')" data-precio="450">
+                                        <div class="btn-cantidad" onclick="actualizarCantidad(2, 'sumar')">+</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="producto-precio subtotal">$450</div>
+                                </td>
+                                <td>
+                                    <div class="producto-acciones">
+                                        <button class="btn-eliminar" onclick="eliminarProducto(2)">
+                                            <span>&times;</span> Eliminar
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Producto 3 -->
+                            <tr data-id="3">
+                                <td>
+                                    <div class="producto-carrito">
+                                        <div class="producto-carrito-imagen">
+                                            <img src="images/productos/mochila.jpg" alt="Mochila Escolar">
+                                        </div>
+                                        <div class="producto-carrito-info">
+                                            <h4>Mochila Escolar</h4>
+                                            <p>TravelPro</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="producto-precio">
+                                        $1800
+                                        <span class="precio-unitario">Unitario</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-cantidad">
+                                        <div class="btn-cantidad" onclick="actualizarCantidad(3, 'restar')">-</div>
+                                        <input type="number" value="1" min="1" class="cantidad-input" onchange="actualizarCantidad(3, 'input')" data-precio="1800">
+                                        <div class="btn-cantidad" onclick="actualizarCantidad(3, 'sumar')">+</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="producto-precio subtotal">$1800</div>
+                                </td>
+                                <td>
+                                    <div class="producto-acciones">
+                                        <button class="btn-eliminar" onclick="eliminarProducto(3)">
+                                            <span>&times;</span> Eliminar
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="carrito-acciones-footer">
+                        <a href="tienda.html" class="continuar-comprando">
+                            <span>&larr;</span> Continuar comprando
+                        </a>
+                        <div class="btn-acciones">
+                            <button class="btn secondary" onclick="vaciarCarrito()">Vaciar carrito</button>
+                            <button class="btn" onclick="actualizarCarrito()">Actualizar carrito</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Resumen del carrito -->
+                <div class="carrito-resumen">
+                    <h3>Resumen del pedido</h3>
+                    
+                    <div class="carrito-linea">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$2950</span>
+                    </div>
+                    
+                    <div class="carrito-linea">
+                        <span>Envío</span>
+                        <span>A calcular</span>
+                    </div>
+                    
+                    <div class="carrito-linea carrito-descuento">
+                        <span>Descuento Mayorista</span>
+                        <span id="descuento">$0</span>
+                    </div>
+                    
+                    <div class="carrito-total">
+                        <span>Total</span>
+                        <span class="carrito-total-valor" id="total">$2950</span>
+                    </div>
+                    
+                    <div class="carrito-instrucciones">
+                        <div class="instrucciones-titulo">
+                            <span>Instrucciones especiales</span>
+                        </div>
+                        <textarea class="carrito-textarea" placeholder="Si necesitas algo específico, escríbelo aquí..."></textarea>
+                    </div>
+                    
+                    <button class="btn btn-checkout">Solicitar cotización</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2025 Tienda Escolar S.A. | Hecho con ayuda de un gran mentor 💡</p>
+    </footer>
+
+    <!-- Mensaje Toast -->
+    <div id="toast">Carrito actualizado</div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarContadorCarrito();
+            actualizarTotales();
+            verificarCarritoVacio();
+        });
+        
+        // Función para actualizar la cantidad del producto
+        function actualizarCantidad(id, accion) {
+            const row = document.querySelector(`tr[data-id="${id}"]`);
+            const inputCantidad = row.querySelector('.cantidad-input');
+            let cantidad = parseInt(inputCantidad.value);
+            
+            if (accion === 'sumar') {
+                cantidad++;
+            } else if (accion === 'restar' && cantidad > 1) {
+                cantidad--;
+            } else if (accion === 'input') {
+                // La cantidad ya se actualizó con el input
+                if (cantidad < 1) {
+                    cantidad = 1;
+                }
+            }
+            
+            inputCantidad.value = cantidad;
+            
+            // Actualizar subtotal
+            const precio = parseFloat(inputCantidad.getAttribute('data-precio'));
+            const subtotal = precio * cantidad;
+            row.querySelector('.subtotal').textContent = `$${subtotal}`;
+            
+            // Actualizar totales
+            actualizarTotales();
+            
+            // Mostrar mensaje
+            mostrarToast('Cantidad actualizada');
+        }
+        
+        // Función para eliminar un producto
+        function eliminarProducto(id) {
+            // En una aplicación real, esto haría una llamada AJAX
+            // Por ahora, simplemente eliminamos la fila
+            const row = document.querySelector(`tr[data-id="${id}"]`);
+            row.remove();
+            
+            // Actualizar totales
+            actualizarTotales();
+            
+            // Verificar si el carrito quedó vacío
+            verificarCarritoVacio();
+            
+            // Mostrar mensaje
+            mostrarToast('Producto eliminado del carrito');
+        }
+        
+        // Función para vaciar el carrito
+        function vaciarCarrito() {
+            // En una aplicación real, esto haría una llamada AJAX
+            // Por ahora, simplemente eliminamos todas las filas
+            document.querySelectorAll('.tabla-carrito tbody tr').forEach(row => {
+                row.remove();
+            });
+            
+            // Actualizar totales
+            actualizarTotales();
+            
+            // Mostrar carrito vacío
+            verificarCarritoVacio();
+            
+            // Mostrar mensaje
+            mostrarToast('Carrito vaciado');
+        }
+        
+        // Función para actualizar el carrito
+        function actualizarCarrito() {
+            // En una aplicación real, esto haría una llamada AJAX
+            // Por ahora, solo mostramos el mensaje
+            mostrarToast('Carrito actualizado');
+        }
+        
+        // Función para actualizar los totales
+        function actualizarTotales() {
+            let subtotal = 0;
+            
+            // Calcular subtotal
+            document.querySelectorAll('.tabla-carrito tbody tr').forEach(row => {
+                const subtotalText = row.querySelector('.subtotal').textContent;
+                subtotal += parseFloat(subtotalText.replace('$', ''));
+            });
+            
+            // Actualizar subtotal
+            document.getElementById('subtotal').textContent = `$${subtotal}`;
+            
+            // Calcular descuento (ejemplo: 10% si es mayorista)
+            // Aquí puedes implementar tu lógica de descuentos
+            const descuento = 0; // En este ejemplo no hay descuento
+            document.getElementById('descuento').textContent = `$${descuento}`;
+            
+            // Actualizar total
+            const total = subtotal - descuento;
+            document.getElementById('total').textContent = `$${total}`;
+            
+            // Actualizar contador de productos
+            const numProductos = document.querySelectorAll('.tabla-carrito tbody tr').length;
+            const textoProductos = numProductos === 1 ? 'producto' : 'productos';
+            document.querySelector('.carrito-header p').textContent = `${numProductos} ${textoProductos} en tu carrito`;
+        }
+        
+        // Verificar si el carrito está vacío
+        function verificarCarritoVacio() {
+            const numProductos = document.querySelectorAll('.tabla-carrito tbody tr').length;
+            
+            if (numProductos === 0) {
+                document.getElementById('carrito-contenido').style.display = 'none';
+                document.getElementById('carrito-vacio').style.display = 'block';
+            } else {
+                document.getElementById('carrito-contenido').style.display = 'grid';
+                document.getElementById('carrito-vacio').style.display = 'none';
+            }
+        }
+        
+        // Mostrar mensaje toast
+        function mostrarToast(mensaje) {
+            const toast = document.getElementById('toast');
+            toast.textContent = mensaje;
+            toast.style.top = '20px';
+            
+            setTimeout(() => {
+                toast.style.top = '-60px';
+            }, 3000);
+        }
+        
+        // Actualizar contador de carrito (función simulada)
+        function actualizarContadorCarrito() {
+            // En una aplicación real, esto haría una llamada AJAX
+            // Aquí simplemente usamos el valor hardcoded por ahora
+            document.getElementById('contador-carrito').textContent = '3';
+        }
+    </script>
+</body>
+</html>

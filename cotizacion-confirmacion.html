@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cotización Enviada - Tienda Escolar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto :wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="images/logo.png" alt="Logo" width="50">
+        <h1>Tienda Escolar S.A.</h1>
+      </div>
+
+      <!-- Menú de navegación -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Barra de usuario y carrito -->
+      <div class="usuario-carrito">
+        <?php if (isset($_SESSION['usuario'])) { ?>
+          <p><?= $_SESSION['usuario']['email'] ?></p>
+          <a href="logout.php">Cerrar Sesión</a>
+        <?php } else { ?>
+          <a href="registro.html">Crear Cuenta</a> -
+          <a href="login.html">Iniciar Sesión</a>
+        <?php } ?>
+        <div class="carrito">
+          <a href="carrito.html">
+            <img src="images/carrito-icon.png" alt="Carrito" width="30">
+            <span id="contador-carrito">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="container">
+    <section class="contenido-pagina">
+      <h2>Su cotización ha sido enviada</h2>
+      <p>Gracias por su consulta. Nos pondremos en contacto con usted a la brevedad posible.</p>
+
+      <br>
+      <a href="index.html" class="btn">Volver al Inicio</a>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2025 Tienda Escolar S.A. | Hecho con ayuda de un gran mentor 💡</p>
+  </footer>
+
+  <!-- Script para actualizar carrito -->
+  <script>
+    function actualizarContadorCarrito() {
+      fetch('php/carrito-actualizar.php')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('contador-carrito').textContent = data.cantidad;
+        })
+        .catch(error => {
+          console.error('Error al cargar el carrito:', error);
+        });
+    }
+
+    setInterval(actualizarContadorCarrito, 3000); // Cada 3 segundos
+    document.addEventListener("DOMContentLoaded", () => {
+      actualizarContadorCarrito();
+    });
+  </script>
+
+  <script src="js/main.js"></script>
+
+</body>
+</html>

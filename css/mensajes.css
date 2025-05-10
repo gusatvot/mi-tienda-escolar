@@ -1,0 +1,103 @@
+/* css/mensajes.css - Mensajes tipo Toast y alertas */
+
+/* Toast (mensaje emergente) */
+#toast {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-primary);
+    color: white;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    transition: top var(--transition-normal);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+#toast.success {
+    background-color: var(--color-accent);
+}
+
+#toast.error {
+    background-color: var(--color-danger);
+}
+
+#toast.warning {
+    background-color: var(--color-secondary);
+    color: var(--color-dark);
+}
+
+/* Icono del toast */
+#toast:before {
+    content: '✓';
+    font-weight: bold;
+}
+
+#toast.error:before {
+    content: '✕';
+}
+
+#toast.warning:before {
+    content: '!';
+}
+
+/* Alertas en página */
+.alerta {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    margin: var(--space-md) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.alerta-info {
+    background-color: rgba(26, 115, 232, 0.1);
+    border-left: 4px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.alerta-exito {
+    background-color: rgba(52, 168, 83, 0.1);
+    border-left: 4px solid var(--color-accent);
+    color: var(--color-accent);
+}
+
+.alerta-advertencia {
+    background-color: rgba(251, 188, 4, 0.1);
+    border-left: 4px solid var(--color-secondary);
+    color: var(--color-secondary);
+}
+
+.alerta-error {
+    background-color: rgba(234, 67, 53, 0.1);
+    border-left: 4px solid var(--color-danger);
+    color: var(--color-danger);
+}
+
+/* Icono de la alerta */
+.alerta:before {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+}
+
+.alerta-info:before {
+    content: 'i';
+}
+
+.alerta-exito:before {
+    content: '✓';
+}
+
+.alerta-advertencia:before {
+    content: '!';
+}
+
+.alerta-error:before {
+    content: '✕';
+}

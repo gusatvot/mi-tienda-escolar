@@ -1,0 +1,25 @@
+/* css/breadcrumbs.css - Estilos para las migas de pan */
+
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin: var(--space-md) 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-gray);
+}
+
+.breadcrumbs a {
+    color: var(--color-gray);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.breadcrumbs a:hover {
+    color: var(--color-primary);
+}
+
+.breadcrumbs span {
+    color: var(--color-dark);
+    font-weight: 500;
+}

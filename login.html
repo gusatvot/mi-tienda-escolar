@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Iniciar Sesión - Tienda Escolar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto :wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="../images/logo.png" alt="Logo" width="50">
+        <h1>Tienda Escolar S.A.</h1>
+      </div>
+
+      <!-- Menú de navegación -->
+      <nav>
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="../tienda.html">Tienda</a></li>
+          <li><a href="../contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Barra de usuario y carrito -->
+      <div class="usuario-carrito">
+        <a href="../registro.html">Crear Cuenta</a> -
+        <a href="../login.html">Iniciar Sesión</a>
+        <div class="carrito">
+          <a href="../carrito.php">
+            <img src="../images/carrito-icon.png" alt="Carrito" width="30">
+            <span id="contador-carrito">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="container">
+    <section class="contenido-pagina">
+      <h2>Iniciar Sesión</h2>
+
+      <?php
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+          $password = trim($_POST['password']);
+
+          if (!$email || empty($password)) {
+              echo "<div class='alerta-carrito-vacio'>
+                      <p>Por favor, completa todos los campos correctamente.</p>
+                    </div>";
+          } else {
+              require_once '../php/db.php';
+              try {
+                  $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+                  $stmt->execute([$email]);
+                  $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                  if ($usuario && password_verify($password, $usuario['password'])) {
+                      session_start();
+                      $_SESSION['usuario'] = [
+                          'id' => $usuario['id'],
+                          'nombre' => $usuario['nombre'],
+                          'email' => $usuario['email'],
+                          'tipo' => $usuario['tipo']
+                      ];
+                      header("Location: productos.php");
+                      exit();
+                  } else {
+                      echo "<div class='alerta-carrito-vacio'>
+                              <p>Datos incorrectos. Inténtalo nuevamente.</p>
+                            </div>";
+                  }
+              } catch (PDOException $e) {
+                  echo "<p style='color:red;'>Error al iniciar sesión: " . $e->getMessage() . "</p>";
+              }
+          }
+      }
+      ?>
+
+      <form method="POST">
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" name="email" required>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit" class="btn">Iniciar Sesión</button>
+      </form>
+
+      <p>No tienes cuenta? <a href="registro.html" class="btn secondary">Regístrate aquí</a></p>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2025 Tienda Escolar S.A. | Hecho con ayuda de un gran mentor 💡</p>
+  </footer>
+
+  <!-- Script para actualizar carrito -->
+  <script>
+    function actualizarContadorCarrito() {
+      fetch('../php/carrito-actualizar.php')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('contador-carrito').textContent = data.cantidad;
+        })
+        .catch(error => {
+          console.error('Error al cargar el carrito:', error);
+        });
+    }
+
+    setInterval(actualizarContadorCarrito, 3000); // Cada 3 segundos
+    document.addEventListener("DOMContentLoaded", () => {
+      actualizarContadorCarrito();
+    });
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

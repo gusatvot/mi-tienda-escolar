@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaderno Premium - Tienda Escolar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo de la Tienda" width="50">
+                <h1>Tienda Escolar S.A.</h1>
+            </div>
+
+            <!-- Menú de navegación -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="tienda.html">Tienda</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <!-- Barra de usuario y carrito -->
+            <div class="usuario-carrito">
+                <a href="registro.html">Crear Cuenta</a> -
+                <a href="login.html">Iniciar Sesión</a>
+                <div class="carrito">
+                    <a href="carrito.html">
+                        <img src="images/carrito-icon.png" alt="Carrito" width="30">
+                        <span id="contador-carrito">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Migas de pan -->
+        <div class="breadcrumbs">
+            <a href="index.html">Inicio</a> &gt;
+            <a href="tienda.html">Tienda</a> &gt;
+            <span>Cuaderno Premium</span>
+        </div>
+        
+        <!-- Detalle del producto -->
+        <div class="producto-detalle">
+            <!-- Galería del producto -->
+            <div class="producto-galeria">
+                <div class="producto-imagen-principal">
+                    <img src="images/productos/cuaderno.jpg" alt="Cuaderno Premium" id="imagen-principal">
+                </div>
+                <div class="producto-miniaturas">
+                    <div class="producto-miniatura activo" onclick="cambiarImagen('images/productos/cuaderno.jpg')">
+                        <img src="images/productos/cuaderno.jpg" alt="Cuaderno vista 1">
+                    </div>
+                    <div class="producto-miniatura" onclick="cambiarImagen('images/productos/cuaderno-2.jpg')">
+                        <img src="images/productos/default.jpg" alt="Cuaderno vista 2">
+                    </div>
+                    <div class="producto-miniatura" onclick="cambiarImagen('images/productos/cuaderno-3.jpg')">
+                        <img src="images/productos/default.jpg" alt="Cuaderno vista 3">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Información del producto -->
+            <div class="producto-info">
+                <div class="producto-encabezado">
+                    <h1>Cuaderno Premium</h1>
+                    <div class="producto-meta">
+                        <div class="producto-meta-item">
+                            <span>Categoría:</span>
+                            <a href="tienda.html?categoria=Cuadernos">Cuadernos</a>
+                        </div>
+                        <div class="producto-meta-item">
+                            <span>Marca:</span>
+                            <a href="tienda.html?marca=SchoolPro">SchoolPro</a>
+                        </div>
+                        <div class="producto-meta-item">
+                            <span>Código:</span>
+                            <span>CUAD-001</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="producto-precio">
+                    <span class="precio-actual">$350</span>
+                    <span class="precio-normal">$400</span>
+                    <span class="precio-mayorista">$290 (Precio Mayorista)</span>
+                </div>
+                
+                <p>Cuaderno premium de tapa dura con 100 hojas de papel de alta calidad. Ideal para estudiantes y profesionales. Disponible en varios colores.</p>
+                
+                <div class="producto-acciones">
+                    <div class="contador-cantidad">
+                        <div class="btn-cantidad" onclick="disminuirCantidad()">-</div>
+                        <input type="number" value="1" min="1" class="input-cantidad" id="cantidad">
+                        <div class="btn-cantidad" onclick="aumentarCantidad()">+</div>
+                    </div>
+                    <button class="btn btn-agregar-carrito" onclick="agregarAlCarrito(1)">
+                        Agregar al carrito
+                    </button>
+                </div>
+                
+                <div class="producto-disponibilidad">
+                    <div class="alerta alerta-info">
+                        Stock disponible: 50 unidades
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tabs de información adicional -->
+        <div class="producto-tabs">
+            <div class="tabs-navegacion">
+                <button class="tab-boton activo" onclick="abrirTab('descripcion')">Descripción</button>
+                <button class="tab-boton" onclick="abrirTab('especificaciones')">Especificaciones</button>
+                <button class="tab-boton" onclick="abrirTab('envio')">Envío</button>
+            </div>
+            
+            <div id="tab-descripcion" class="tab-contenido activo">
+                <h3>Descripción Detallada</h3>
+                <p>El cuaderno premium SchoolPro es la elección perfecta para estudiantes y profesionales que valoran la calidad. Con una tapa dura resistente a golpes y rayaduras, este cuaderno está diseñado para durar todo el ciclo escolar.</p>
+                <p>Sus 100 hojas de papel de alta calidad (90g/m²) permiten escribir con cualquier tipo de bolígrafo sin traspasar la tinta a la siguiente página. El papel blanco de alto contraste facilita la lectura y reduce la fatiga visual.</p>
+                <p>El diseño incluye una banda elástica para mantener el cuaderno cerrado cuando no está en uso, y un marcador de página integrado para que nunca pierdas tu lugar. Disponible en varios colores para adaptarse a tu estilo personal.</p>
+            </div>
+            
+            <div id="tab-especificaciones" class="tab-contenido">
+                <h3>Especificaciones Técnicas</h3>
+                <ul>
+                    <li><strong>Dimensiones:</strong> 21 x 29.7 cm (A4)</li>
+                    <li><strong>Páginas:</strong> 100 hojas (200 páginas)</li>
+                    <li><strong>Papel:</strong> 90g/m², blanco, sin líneas</li>
+                    <li><strong>Tapa:</strong> Dura, resistente a golpes</li>
+                    <li><strong>Encuadernación:</strong> Cosida</li>
+                    <li><strong>Extras:</strong> Banda elástica, marcador de página</li>
+                    <li><strong>Colores disponibles:</strong> Azul, Negro, Rojo</li>
+                </ul>
+            </div>
+            
+            <div id="tab-envio" class="tab-contenido">
+                <h3>Información de Envío</h3>
+                <p>Realizamos envíos a todo el país. El tiempo de entrega depende de la ubicación:</p>
+                <ul>
+                    <li><strong>Capital Federal:</strong> 1-2 días hábiles</li>
+                    <li><strong>Gran Buenos Aires:</strong> 2-3 días hábiles</li>
+                    <li><strong>Interior del país:</strong> 3-5 días hábiles</li>
+                </ul>
+                <p>El costo de envío se calcula en base a la ubicación y el peso total del pedido. Para compras superiores a $5000, el envío es gratuito a todo el país.</p>
+                <p>También ofrecemos la opción de retiro en nuestra tienda sin costo adicional.</p>
+            </div>
+        </div>
+        
+        <!-- Productos relacionados -->
+        <div class="productos-relacionados">
+            <h3>Productos Relacionados</h3>
+            <div class="grid-productos">
+                <!-- Producto relacionado 1 -->
+                <div class="producto-card">
+                    <img src="images/productos/lapices.jpg" alt="Lápices de Colores">
+                    <h4>Lápices de Colores - 24 unidades</h4>
+                    <p><strong>$450</strong></p>
+                    <a href="#" class="btn secondary">Agregar al carrito</a>
+                </div>
+                <!-- Producto relacionado 2 -->
+                <div class="producto-card">
+                    <img src="images/productos/default.jpg" alt="Bolígrafos Premium">
+                    <h4>Bolígrafos Premium - Pack x3</h4>
+                    <p><strong>$350</strong></p>
+                    <a href="#" class="btn secondary">Agregar al carrito</a>
+                </div>
+                <!-- Producto relacionado 3 -->
+                <div class="producto-card">
+                    <img src="images/productos/default.jpg" alt="Resaltadores Pastel">
+                    <h4>Resaltadores Pastel - Pack x5</h4>
+                    <p><strong>$420</strong></p>
+                    <a href="#" class="btn secondary">Agregar al carrito</a>
+                </div>
+                <!-- Producto relacionado 4 -->
+                <div class="producto-card">
+                    <img src="images/productos/default.jpg" alt="Agenda Escolar">
+                    <h4>Agenda Escolar 2025</h4>
+                    <p><strong>$580</strong></p>
+                    <a href="#" class="btn secondary">Agregar al carrito</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2025 Tienda Escolar S.A. | Hecho con ayuda de un gran mentor 💡</p>
+    </footer>
+
+    <!-- Mensaje Toast -->
+    <div id="toast">Producto agregado al carrito</div>
+
+    <!-- Scripts -->
+    <script>
+        // Galería de imágenes
+        function cambiarImagen(src) {
+            document.getElementById('imagen-principal').src = src;
+            
+            // Actualizar miniatura activa
+            document.querySelectorAll('.producto-miniatura').forEach(mini => {
+                mini.classList.remove('activo');
+            });
+            
+            event.currentTarget.classList.add('activo');
+        }
+        
+        // Control de cantidad
+        function disminuirCantidad() {
+            const input = document.getElementById('cantidad');
+            const valor = parseInt(input.value);
+            if (valor > 1) {
+                input.value = valor - 1;
+            }
+        }
+        
+        function aumentarCantidad() {
+            const input = document.getElementById('cantidad');
+            input.value = parseInt(input.value) + 1;
+        }
+        
+        // Tabs
+        function abrirTab(tabId) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-contenido').forEach(tab => {
+                tab.classList.remove('activo');
+            });
+            
+            // Desactivar todos los botones
+            document.querySelectorAll('.tab-boton').forEach(btn => {
+                btn.classList.remove('activo');
+            });
+            
+            // Activar el tab seleccionado
+            document.getElementById('tab-' + tabId).classList.add('activo');
+            
+            // Activar el botón correspondiente
+            event.currentTarget.classList.add('activo');
+        }
+        
+        // Agregar al carrito
+        function agregarAlCarrito(productoId) {
+            const cantidad = document.getElementById('cantidad').value;
+            
+            // Aquí harías una llamada AJAX para agregar al carrito
+            // Por ahora, simplemente mostramos el toast
+            const toast = document.getElementById('toast');
+            toast.textContent = `${cantidad} producto(s) agregado(s) al carrito`;
+            toast.style.top = '20px';
+            
+            setTimeout(() => {
+                toast.style.top = '-60px';
+            }, 3000);
+            
+            // Actualizar contador de carrito
+            actualizarContadorCarrito();
+        }
+        
+        // Actualizar contador de carrito
+        function actualizarContadorCarrito() {
+            fetch('php/carrito-actualizar.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('contador-carrito').textContent = data.cantidad;
+                })
+                .catch(error => {
+                    console.error('Error al cargar el carrito:', error);
+                });
+        }
+        
+        // Ejecutar al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            actualizarContadorCarrito();
+        });
+    </script>
+</body>
+</html>

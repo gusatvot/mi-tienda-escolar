@@ -1,0 +1,79 @@
+/* css/styles.css - Archivo principal que importa los demás */
+
+@import url('base.css');
+@import url('header.css');
+@import url('botones.css');
+@import url('productos.css');
+@import url('carrito.css');
+@import url('mensajes.css');
+@import url('banner.css');
+@import url('formularios.css');
+@import url('producto-detalle.css');
+@import url('breadcrumbs.css');
+
+/* Estilos adicionales específicos de páginas */
+
+/* Página principal - Hero banner */
+.banner-principal {
+    background: linear-gradient(to right, var(--color-primary), #4285F4);
+    color: white;
+    padding: var(--space-xl) 0;
+    margin-bottom: var(--space-xl);
+    text-align: center;
+    border-radius: var(--radius-md);
+}
+
+.banner-principal h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-md);
+}
+
+.banner-principal p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-lg);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Contenido principal */
+main {
+    min-height: 70vh;
+    padding: var(--space-lg) 0;
+}
+
+.contenido-pagina {
+    background-color: white;
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-lg);
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-dark);
+    color: white;
+    padding: var(--space-lg) 0;
+    text-align: center;
+    margin-top: var(--space-xl);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Para dispositivos pequeños */
+@media (max-width: 576px) {
+    .banner-principal {
+        padding: var(--space-lg) var(--space-sm);
+    }
+    
+    .banner-principal h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .contenido-pagina {
+        padding: var(--space-md);
+    }
+}

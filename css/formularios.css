@@ -1,0 +1,131 @@
+/* css/formularios.css - Estilos para formularios */
+
+/* Contenedor de formulario */
+.formulario {
+    background-color: white;
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.formulario h2 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--color-primary);
+}
+
+/* Grupos de campos */
+.form-grupo {
+    margin-bottom: var(--space-md);
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: 500;
+    color: var(--color-dark);
+}
+
+.form-grupo input,
+.form-grupo select,
+.form-grupo textarea {
+    width: 100%;
+    padding: var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-md);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-grupo input:focus,
+.form-grupo select:focus,
+.form-grupo textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+}
+
+.form-grupo textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Campos en línea */
+.form-inline {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.form-inline > * {
+    flex: 1;
+}
+
+/* Campos con ícono */
+.form-icon {
+    position: relative;
+}
+
+.form-icon input,
+.form-icon select {
+    padding-left: 40px;
+}
+
+.form-icon i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-gray);
+}
+
+/* Mensajes de error */
+.form-error {
+    color: var(--color-danger);
+    font-size: var(--font-size-sm);
+    margin-top: var(--space-xs);
+}
+
+/* Acciones del formulario */
+.form-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+/* Checkbox y radio */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+}
+
+.form-check input[type="checkbox"],
+.form-check input[type="radio"] {
+    width: auto;
+    margin: 0;
+}
+
+.form-check label {
+    margin: 0;
+    font-weight: normal;
+}
+
+/* Para dispositivos pequeños */
+@media (max-width: 576px) {
+    .form-inline {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .form-acciones {
+        flex-direction: column;
+    }
+    
+    .form-acciones .btn {
+        width: 100%;
+    }
+}
